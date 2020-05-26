@@ -8,71 +8,11 @@
 #include "glm/gtc/matrix_transform.hpp"
 
 #include "Shader.h"
-
-int width = 800;
-int height = 600;
-int vwidth = 400;
-int vheight = 240;
-float correction;
-
-float deviceRatio = width / height;
-float virtualRatio = vwidth / vheight;
-float xCorrection = width / vwidth;
-float yCorrection = height / vheight;
-
-void resize(GLFWwindow* window, int Width, int Height)
-{
-	width = Width;
-	height = Height;
-
-	glViewport(0, 0, width, height);
-
-
-	float deviceRatio = width / height;
-	float virtualRatio = vwidth / vheight;
-	float xCorrection = width / vwidth;
-	float yCorrection = height / vheight;
-
-	if (virtualRatio < deviceRatio) {
-		correction = yCorrection;
-	}
-	else {
-		correction = xCorrection;
-	}
-	float left = -width / 2.0f / correction;
-	float right = width / 2.0f / correction;
-	float bottom = -height / 2.0f / correction;
-	float top = height / 2.0f / correction;
-}
+#include "Window.h"
 
 int main()
 {
-	GLFWwindow* window;
-
-	if (virtualRatio < deviceRatio) {
-		correction = yCorrection;
-	}
-	else {
-		correction = xCorrection;
-	}
-	float left = -width / 2.0f / correction;
-	float right = width / 2.0f / correction;
-	float bottom = -height / 2.0f / correction;
-	float top = height / 2.0f / correction;
-
-	if (!glfwInit())
-		return -1;
-
-	window = glfwCreateWindow(width, height, "New window", nullptr, nullptr);
-	if (!window)
-	{
-		glfwTerminate();
-		return -1;
-	}
-
-	glfwSetFramebufferSizeCallback(window, resize);
-
-	glfwMakeContextCurrent(window);
+	Window window = Window("New Game", 800, 600);
 
 	if (glewInit() != GLEW_OK)
 	{
@@ -90,7 +30,7 @@ int main()
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
 	const GLFWvidmode* vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
-	glfwSetWindowPos(window, (vidmode->width - width) / 2, (vidmode->height - height) / 2);
+	glfwSetWindowPos(window.GetWindow(), (vidmode->width - window.GetWidth()) / 2, (vidmode->height - window.GetHeight()) / 2);
 
 	uint32_t m_VAO, m_VBO, m_IBO;
 
@@ -133,11 +73,11 @@ int main()
 	m_Shader.SetMat4("u_Transformation", m_Transformation);
 
 	glfwSwapInterval(1);
-	glfwShowWindow(window);
+	glfwShowWindow(window.GetWindow());
 
-	glViewport(0, 0, width, height);
+	glViewport(0, 0, window.GetWidth(), window.GetHeight());
 
-	while (!glfwWindowShouldClose(window))
+	while (!glfwWindowShouldClose(window.GetWindow()))
 	{
 
 		/*some type of tick system
@@ -157,14 +97,14 @@ int main()
 		int x = 0;
 		int y = 0;
 
-		if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+		if (glfwGetKey(window.GetWindow(), GLFW_KEY_W) == GLFW_PRESS)
 			y = 1;
-		else if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+		else if (glfwGetKey(window.GetWindow(), GLFW_KEY_S) == GLFW_PRESS)
 			y = -1;
 
-		if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+		if (glfwGetKey(window.GetWindow(), GLFW_KEY_D) == GLFW_PRESS)
 			x = 1;
-		else if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+		else if (glfwGetKey(window.GetWindow(), GLFW_KEY_A) == GLFW_PRESS)
 			x = -1;
 
 		m_Position.x =  x * 0.05;
@@ -182,7 +122,7 @@ int main()
 
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
-		glfwSwapBuffers(window);
+		glfwSwapBuffers(window.GetWindow());
 
 		glfwPollEvents();
 
