@@ -21,8 +21,9 @@ public:
 	void Bind();
 	void Unbind();
 	void SetInt(const std::string&, int);
-	void SetFloat3();
-	void SetFloat4();
+	void SetFloat(const std::string&, const float);
+	void SetFloat3(const std::string&, const glm::vec3&);
+	void SetFloat4(const std::string&,const glm::vec4&);
 	void SetMat4(const std::string&, const glm::mat4&);
 
 	const std::string& GetName() { return m_Name; }

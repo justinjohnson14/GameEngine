@@ -1,18 +1,6 @@
-﻿Window.obj : error LNK2001: unresolved external symbol glfwSwapBuffers
-Window.obj : error LNK2001: unresolved external symbol glfwSwapInterval
-Window.obj : error LNK2001: unresolved external symbol glfwDefaultWindowHints
-Window.obj : error LNK2001: unresolved external symbol glfwGetKey
-Window.obj : error LNK2001: unresolved external symbol glfwGetVideoMode
-Window.obj : error LNK2001: unresolved external symbol glfwPollEvents
-Window.obj : error LNK2001: unresolved external symbol glfwInit
-Window.obj : error LNK2001: unresolved external symbol glfwSetKeyCallback
-Window.obj : error LNK2001: unresolved external symbol glfwSetWindowShouldClose
-Window.obj : error LNK2001: unresolved external symbol glfwCreateWindow
-Window.obj : error LNK2001: unresolved external symbol glfwWindowHint
-Window.obj : error LNK2001: unresolved external symbol glfwMakeContextCurrent
-Window.obj : error LNK2001: unresolved external symbol glfwShowWindow
-Window.obj : error LNK2001: unresolved external symbol __imp_glClearColor
-Window.obj : error LNK2001: unresolved external symbol glfwGetPrimaryMonitor
-Window.obj : error LNK2001: unresolved external symbol glfwSetErrorCallback
-Window.obj : error LNK2001: unresolved external symbol glfwSetWindowPos
-F:\programming\C++\GameEngine\GameEngine\x64\Release\GameEngine.exe : fatal error LNK1120: 17 unresolved externals
+﻿  ImguiLayer.cpp
+LINK : warning LNK4098: defaultlib 'LIBCMTD' conflicts with use of other libs; use /NODEFAULTLIB:library
+  Generating code
+  Finished generating code
+glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'F:\programming\C++\GameEngine\x64\Release\vc120.pdb'; linking object as if no debug info
+  GameEngine.vcxproj -> F:\programming\C++\GameEngine\x64\Release\GameEngine.exe

@@ -1,0 +1,27 @@
+---EventManager---
+
+event stack is a fifo queue
+
+std::vector<Event*> GetQueue()
+-returns the queue of events
+
+void Push(Event* e)
+-pushes an event onto the back of the event stack
+
+void Pop()
+-pops the oldest event off the stack(does not return it at the moment could change)
+
+static EventManager* Get()
+-returns the instance of the EventManager as it is a singleton
+
+class variables:
+    static EventManager* s_Instance;
+	std::queue<Event*> queue;
+
+---Event---
+-is pure vurtal class that all the different events types derive from
+
+virtual void Handle() = 0
+
+
+
